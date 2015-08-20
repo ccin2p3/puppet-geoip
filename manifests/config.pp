@@ -15,5 +15,8 @@ class geoip::config {
     ensure  => present,
     content => template('geoip/conf.erb'),
   }
+  if ($::geoip::autoupdate) {
+    include ::geoip::update
+  }
 }
 # vim: ft=puppet
