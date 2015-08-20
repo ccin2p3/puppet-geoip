@@ -5,7 +5,6 @@
 2. [Module Description - What the module does and why it is useful](#module-description)
 3. [Setup - The basics of getting started with geoip](#setup)
     * [What geoip affects](#what-geoip-affects)
-    * [Setup requirements](#setup-requirements)
     * [Beginning with geoip](#beginning-with-geoip)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
@@ -14,68 +13,64 @@
 
 ## Overview
 
-This is a *technology` class, as opposed to a *site* class.
-A one-maybe-two sentence summary of what the module does/what problem it solves. This is your 30 second elevator pitch for your module. Consider including OS/Puppet version it works with.       
+Manages [Maxmind GeoIP database](https://www.maxmind.com/).
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology the module integrates with and what that integration enables. This section should answer the questions: "What does this module *do*?" and "Why would I use it?"
-
-If your module has a range of functionality (installation, configuration, management, etc.) this is the time to mention it.
+Installs packages containing executables and libraries, and manages the database files.
 
 ## Setup
 
 ### What geoip affects
 
-* A list of files, packages, services, or operations that the module will alter, impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form. 
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled, etc.), mention it here. 
+* `/etc/GeoIP.conf`
+* packages relative to geoip
+* cron job to update databases
 
 ### Beginning with geoip
 
-The very basic steps needed for a user to get the module up and running. 
-
-If your most recent release breaks compatibility or requires particular steps for upgrading, you may wish to include an additional section here: Upgrading (For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
-
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing the fancy stuff with your module here. 
+### Default
+
+```
+include ::geoip
+```
+
+### Custom
+
+```
+class { '::geoip':
+  autoupdate => false,
+  userid => '1234567',
+  licensekey => '1234567',
+  productids => ['506', 'GeoLite2-City']
+}
+```
 
 ## Reference
-
-Here, list the classes, types, providers, facts, etc contained in your module. This section should include all of the under-the-hood workings of your module so people know what the module is touching on their system but don't need to mess with things. (We are working on automating this section!)
 
 ### Class geoip
 
 #### Parameters
 
-* `service_name` string containing the name of the Package to install. Defaults to OS specific value (see `params.pp`)
 * `package_name` string containing the name of the Service to manage. Defaults to OS specific value (see `params.pp`)
+* `update_command` string containing the name of the command to execute geoip updates. Defaults to OS specific value (see `params.pp`)
+* `userid` string containing maxmind customer id. Defaults to free account
+* `licensekey` string containing maxmind license id. Defaults to free lite license.
+* `productids` array containing list of [databases](https://dev.maxmind.com/geoip/geoipupdate/) to download
+* `autoupdate` boolean controlling wether cronjob should be installed to update geoip databases on a daily basis. Defaults to `true`
 
-### Class geoip::foo
+### Class geoip::update
 
-#### Parameters
-
-* `package_name` string or array containing list of packages to install. Defaults to OS specific value (see `params.pp`)
-* `service` string or array containing list of services to run. Defaults to OS specific value (see `params.pp`)
-
-### Define geoip::mytype
-
-#### Parameters
-
-* `my_param` string
+Manages the autoupdate process. Cureently implemented by a cronjob.
+No parameters yet.
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+Only tested on Debian 8 and Centos 7
 
 ## Development
-
-Since your module is awesome, other users will want to play with it. Let them know what the ground rules for contributing are.
 
 ### Testing
 
@@ -88,9 +83,3 @@ bundle exec rake spec
 
 https://gitlab.in2p3.fr/cc-in2p3-puppet-service/geoip
 
-
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You may also add any additional sections you feel are necessary or important to include here. Please use the `## ` header. 
-
-[//]: # vim: ft=markdown
