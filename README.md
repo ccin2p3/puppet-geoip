@@ -33,13 +33,13 @@ Installs packages containing executables and libraries, and manages the database
 
 ### Default
 
-```
+```puppet
 include ::geoip
 ```
 
 ### Custom
 
-```
+```puppet
 class { '::geoip':
   autoupdate => false,
   userid => '1234567',

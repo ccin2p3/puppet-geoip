@@ -16,7 +16,6 @@ describe 'geoip' do
           it { should contain_class('geoip::params') }
           it { should contain_class('geoip::config') }
           it { should contain_class('geoip::install').that_comes_before('geoip::config') }
-          it { should contain_class('geoip::service').that_subscribes_to('geoip::config') }
         end
       end
     end
