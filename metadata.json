@@ -1,0 +1,14 @@
+{
+  "name": "ccin2p3-geoip",
+  "version": "0.1.0",
+  "source": "",
+  "author": "ccin2p3",
+  "license": "CeCILL 2.1",
+  "summary": "",
+  "project_page": "",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib"
+    }
+  ]
+}
