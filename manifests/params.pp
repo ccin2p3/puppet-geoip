@@ -12,14 +12,14 @@
 class geoip::params {
   case $::osfamily {
     'Debian': {
-      $package_name = 'geoip'
-      $service_name = 'geoip'
+      $package_name = ['geoip-bin', 'geoip-database', 'geoipupdate']
+      $update_command = '/usr/bin/geoipupdate'
     }
     'RedHat', 'Amazon': {
       case $::operatingsystemmajrelease {
         '6', '7': {
-          $package_name = 'geoip'
-          $service_name = 'geoip'
+          $package_name = ['GeoIP']
+          $update_command = '/bin/geoipupdate'
         }
         default: {
           fail("operatingsystemmajrelease `${::operatingsystemmajrelease}` not supported")

@@ -15,14 +15,17 @@
 #
 class geoip (
   $package_name = $geoip::params::package_name,
-  $service_name = $geoip::params::service_name,
+  $update_command = $geoip::params::update_command,
+  $autoupdate = true,
+  $userid = '999999',
+  $licensekey = '000000000000',
+  $productids = ['506', '533'],
 ) inherits geoip::params {
 
   # validate parameters here
 
   class { 'geoip::install': } ->
-  class { 'geoip::config': } ~>
-  class { 'geoip::service': } ->
+  class { 'geoip::config': } ->
   Class['geoip']
 }
 # vim: ft=puppet

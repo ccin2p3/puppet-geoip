@@ -11,7 +11,7 @@
 #  e.g. configuration Files
 #
 class geoip::config {
-  file { "/etc/geoip.conf":
+  file { '/etc/GeoIP.conf':
     ensure  => present,
     content => template('geoip/conf.erb'),
   }

@@ -1,14 +1,10 @@
 {
   "name": "ccin2p3-geoip",
   "version": "0.1.0",
-  "source": "",
+  "source": "https://gitlab.in2p3.fr/cc-in2p3-puppet-service/module-geoip",
   "author": "ccin2p3",
-  "license": "CeCILL 2.1",
-  "summary": "",
-  "project_page": "",
-  "dependencies": [
-    {
-      "name": "puppetlabs/stdlib"
-    }
-  ]
+  "license": "CeCILL B",
+  "summary": "Manages Maxmind GeoIP database",
+  "project_page": "https://gitlab.in2p3.fr/cc-in2p3-puppet-service/module-geoip",
+  "dependencies": []
 }
