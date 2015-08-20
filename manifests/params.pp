@@ -19,7 +19,7 @@ class geoip::params {
       case $::operatingsystemmajrelease {
         '6', '7': {
           $package_name = ['GeoIP']
-          $update_command = '/bin/geoipupdate'
+          $update_command = '/bin/geoipupdate >/dev/null'
         }
         default: {
           fail("operatingsystemmajrelease `${::operatingsystemmajrelease}` not supported")
