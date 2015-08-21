@@ -14,7 +14,7 @@ class geoip::defaultdb {
     path   => "${::geoip::db_dir}/GeoIP.dat",
     owner  => '0',
     group  => '0',
-    target => "${::geoip::db_dir}/${::geoip::defaultdb}.dat",
+    target => "${::geoip::defaultdb}.dat",
   }
 }
 # vim: ft=puppet
