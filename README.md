@@ -44,7 +44,9 @@ class { '::geoip':
   autoupdate => false,
   userid => '1234567',
   licensekey => '1234567',
-  productids => ['506', 'GeoLite2-City']
+  productids => ['506', 'GeoLite2-City'],
+  manage_defaultdb => true,
+  defaultdb => 'GeoLite2-City'
 }
 ```
 
