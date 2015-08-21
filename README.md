@@ -56,14 +56,22 @@ class { '::geoip':
 
 * `package_name` string containing the name of the Service to manage. Defaults to OS specific value (see `params.pp`)
 * `update_command` string containing the name of the command to execute geoip updates. Defaults to OS specific value (see `params.pp`)
+* `db_dir` string containing the path to geoip's dbfile location. Defaults to OS specific value (see `params.pp`)
 * `userid` string containing maxmind customer id. Defaults to free account
 * `licensekey` string containing maxmind license id. Defaults to free lite license.
 * `productids` array containing list of [databases](https://dev.maxmind.com/geoip/geoipupdate/) to download
 * `autoupdate` boolean controlling wether cronjob should be installed to update geoip databases on a daily basis. Defaults to `true`
+* `manage_defaultdb` boolean controlling wether we should manage the API's default db. Defaults to `false`
+* `defaultdb` string containing the name of the default db. Defaults to `GeoLiteCity`
 
 ### Class geoip::update
 
 Manages the autoupdate process. Cureently implemented by a cronjob.
+No parameters yet.
+
+### Class geoip::defaultdb
+
+Manages the default db file. Cureently implemented by a symlink.
 No parameters yet.
 
 ## Limitations

@@ -16,13 +16,23 @@
 class geoip (
   $package_name = $geoip::params::package_name,
   $update_command = $geoip::params::update_command,
+  $db_dir = $geoip::params::db_dir,
   $autoupdate = true,
   $userid = '999999',
   $licensekey = '000000000000',
   $productids = ['506', '533'],
+  $manage_defaultdb = false,
+  $defaultdb = 'GeoLiteCity',
 ) inherits geoip::params {
 
-  # validate parameters here
+  validate_string($defaultdb)
+  validate_bool($manage_defaultdb)
+  validate_array($productids)
+  validate_string($licensekey)
+  validate_string($userid)
+  validate_bool($autoupdate)
+  validate_absolute_path($db_dir)
+  validate_absolute_path($update_command)
 
   class { 'geoip::install': } ->
   class { 'geoip::config': } ->

@@ -30,6 +30,7 @@ class geoip::params {
       fail("osfamily `${::osfamily}` not supported")
     }
   }
+  $db_dir = '/usr/share/GeoIP'
 }
 
 # vim: ft=puppet

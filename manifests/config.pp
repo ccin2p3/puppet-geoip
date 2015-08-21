@@ -18,5 +18,8 @@ class geoip::config {
   if ($::geoip::autoupdate) {
     include ::geoip::update
   }
+  if ($::geoip::manage_defaultdb) {
+    include ::geoip::defaultdb
+  }
 }
 # vim: ft=puppet
