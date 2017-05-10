@@ -1,3 +1,7 @@
+# 2017-05-10 v0.3.0
+
+* add support for puppet 4
+
 # 2015-08-20 v0.2.0
 * manage default database file
 * improve unit tests
