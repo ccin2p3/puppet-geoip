@@ -11,6 +11,10 @@
 #  e.g. configuration Files
 #
 class geoip::config {
+  include ::geoip
+  $productids = $::geoip::productids
+  $licensekey = $::geoip::licensekey
+  $userid = $::geoip::userid
   file { '/etc/GeoIP.conf':
     ensure  => present,
     content => template('geoip/conf.erb'),
