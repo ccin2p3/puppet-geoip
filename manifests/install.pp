@@ -10,6 +10,7 @@
 # It ensures Package resources are present
 #
 class geoip::install {
+  include ::geoip
   package { $geoip::package_name:
     ensure => present,
   }

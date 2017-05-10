@@ -8,6 +8,7 @@
 # This class implements the automatic geoip database update
 #
 class geoip::update {
+  include ::geoip
   cron { 'geoip':
     command => $geoip::update_command,
     user    => '0',
