@@ -34,8 +34,8 @@ class geoip (
   validate_absolute_path($db_dir)
   validate_absolute_path($update_command)
 
-  class { 'geoip::install': } ->
-  class { 'geoip::config': } ->
-  Class['geoip']
+  class { 'geoip::install': }
+  ->class { 'geoip::config': }
+  ->Class['geoip']
 }
 # vim: ft=puppet
