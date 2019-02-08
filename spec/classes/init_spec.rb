@@ -7,15 +7,13 @@ describe 'geoip' do
         let(:params) { {} }
 
         describe "on #{os}" do
-          let(:facts) do
-            os_facts[:facts]
-          end
+          let(:facts) { os_facts }
 
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_class('geoip') }
           it { is_expected.to contain_class('geoip::params') }
           it { is_expected.to contain_class('geoip::config') }
-          it { is_expected.to contain_class('geoip::install').that_comes_before('geoip::config') }
+          it { is_expected.to contain_class('geoip::install').that_comes_before('Class[geoip::config]') }
         end
       end
     end

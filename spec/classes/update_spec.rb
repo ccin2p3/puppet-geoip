@@ -7,9 +7,7 @@ describe 'geoip::update' do
         let(:params) { {} }
 
         describe "on #{os}" do
-          let(:facts) do
-            os_facts[:facts]
-          end
+          let(:facts) { os_facts }
 
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_cron('geoip') }
