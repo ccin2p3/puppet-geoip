@@ -17,11 +17,11 @@ class geoip (
   $package_name = $geoip::params::package_name,
   $update_command = $geoip::params::update_command,
   $db_dir = $geoip::params::db_dir,
-  $autoupdate = true,
+  Boolean $autoupdate = true,
   $userid = '999999',
   $licensekey = '000000000000',
   $productids = ['506', '533'],
-  $manage_defaultdb = false,
+  Boolean $manage_defaultdb = false,
   $defaultdb = 'GeoLiteCity',
 ) inherits geoip::params {
 
