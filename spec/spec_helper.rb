@@ -1,55 +1,47 @@
 require 'puppetlabs_spec_helper/module_spec_helper'
+require 'rspec-puppet-facts'
 
-# common facts to all supported OS
-# e.g. mocking concat_basedir can be handy
+require 'spec_helper_local' if File.file?(File.join(File.dirname(__FILE__), 'spec_helper_local.rb'))
 
-RSpec.configure do |c|
-  c.default_facts = {
-    :concat_basedir => '/DIR',
-  }
-end
+include RspecPuppetFacts
 
-# specific facts per supported OS
-#
-
-@os_fixtures = {
-  'EL6'     => {
-    :facts => {
-      :operatingsystem      => 'Scientific',
-      :osfamily             => 'RedHat',
-      :operatingsystemmajrelease => 6
-    },
-    :params => {
-      :global_param => 'foo',
-      :profile_myprof_param => 'bar',
-      :role_myrole_param => 'baz'
-    }
-  },
-  'Debian8' => {
-    :facts => {
-      :operatingsystem     => 'Debian',
-      :osfamily            => 'Debian',
-      :operatingsystemmajrelease => 8
-    },
-    :params => {
-      :global_param => 'foo',
-      :profile_myprof_param => 'bar',
-      :role_myrole_param => 'baz'
-    }
-  },
+default_facts = {
+  puppetversion: Puppet.version,
+  facterversion: Facter.version,
 }
 
-# add other combinations if you want to support a new OS e.g.
-#
-# 'MyOS-42' => @common_facts.merge({
-#    :operatingsystem => 'OpenSolaris',
-#    :osfamily => 'Solaris',
-#    :operatingsystemmajrelease => 12
-#  })
+default_fact_files = [
+  File.expand_path(File.join(File.dirname(__FILE__), 'default_facts.yml')),
+  File.expand_path(File.join(File.dirname(__FILE__), 'default_module_facts.yml')),
+]
 
-# If you want to fetch all values from hiera
-#  e.g. because you're testing code that uses explicit hiera lookups
-#
-#RSpec.configure do |c|
-#  c.hiera_config = 'spec/fixtures/hiera/hiera.yaml'
-#end
+default_fact_files.each do |f|
+  next unless File.exist?(f) && File.readable?(f) && File.size?(f)
+
+  begin
+    default_facts.merge!(YAML.safe_load(File.read(f)))
+  rescue => e
+    RSpec.configuration.reporter.message "WARNING: Unable to load #{f}: #{e}"
+  end
+end
+
+RSpec.configure do |c|
+  c.default_facts = default_facts
+  c.before :each do
+    # set to strictest setting for testing
+    # by default Puppet runs at warning level
+    Puppet.settings[:strict] = :warning
+  end
+  c.filter_run_excluding(bolt: true) unless ENV['GEM_BOLT']
+  c.after(:suite) do
+  end
+end
+
+def ensure_module_defined(module_name)
+  module_name.split('::').reduce(Object) do |last_module, next_module|
+    last_module.const_set(next_module, Module.new) unless last_module.const_defined?(next_module, false)
+    last_module.const_get(next_module, false)
+  end
+end
+
+# 'spec_overrides' from sync.yml will appear below this line
