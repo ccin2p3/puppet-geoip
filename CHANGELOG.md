@@ -1,3 +1,8 @@
+# 2019-02-11 v0.4.0
+
+* add support for puppet 5
+* add support for puppet 6
+
 # 2017-05-10 v0.3.0
 
 * add support for puppet 4
