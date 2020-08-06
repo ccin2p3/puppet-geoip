@@ -1,1 +1,2 @@
---- {}
+---
+geoip::db_dir: '/usr/share/GeoIP'

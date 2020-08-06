@@ -1,0 +1,3 @@
+---
+geoip::package_name: ['GeoIP']
+geoip::update_command: '/bin/geoipupdate >/dev/null'

@@ -14,26 +14,16 @@
 #   Explanation of what this parameter affects and what it defaults to.
 #
 class geoip (
-  $package_name = $geoip::params::package_name,
-  $update_command = $geoip::params::update_command,
-  $db_dir = $geoip::params::db_dir,
+  Variant[String[1], Array[String[1]]] $package_name,
+  Stdlib::Absolutepath $update_command,
+  Stdlib::Absolutepath $db_dir,
   Boolean $autoupdate = true,
-  $userid = '999999',
-  $licensekey = '000000000000',
-  $productids = ['506', '533'],
+  String[1] $userid = '999999',
+  String[1] $licensekey = '000000000000',
+  Array[String[1]] $productids = ['506', '533'],
   Boolean $manage_defaultdb = false,
-  $defaultdb = 'GeoLiteCity',
-) inherits geoip::params {
-
-  validate_string($defaultdb)
-  validate_bool($manage_defaultdb)
-  validate_array($productids)
-  validate_string($licensekey)
-  validate_string($userid)
-  validate_bool($autoupdate)
-  validate_absolute_path($db_dir)
-  validate_absolute_path($update_command)
-
+  String[1] $defaultdb = 'GeoLiteCity',
+) {
   class { 'geoip::install': }
   ->class { 'geoip::config': }
   ->Class['geoip']

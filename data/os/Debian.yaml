@@ -1,0 +1,3 @@
+---
+geoip::package_name: ['geoip-bin', 'geoip-database', 'geoipupdate']
+geoip::update_command: '/usr/bin/geoipupdate'
