@@ -17,7 +17,6 @@ describe 'geoip' do
       end
     end
   end
-
 end
 
 # vim: ft=ruby
