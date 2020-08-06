@@ -1,3 +1,7 @@
+# 2020-08-06 v0.5.0
+
+* add support for RHEL 8
+
 # 2019-02-11 v0.4.0
 
 * add support for puppet 5
