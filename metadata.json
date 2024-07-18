@@ -1,17 +1,13 @@
 {
-  "name": "ccin2p3-geoip",
-  "version": "0.5.0",
   "author": "ccin2p3",
-  "summary": "Manages Maxmind GeoIP database",
-  "license": "CECILL-B",
-  "source": "https://gitlab.in2p3.fr/cc-in2p3-puppet-service/module-geoip",
-  "project_page": "https://gitlab.in2p3.fr/cc-in2p3-puppet-service/module-geoip",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
       "version_requirement": ">=2.3.0 <6.0.0"
     }
   ],
+  "license": "CECILL-B",
+  "name": "ccin2p3-geoip",
   "operatingsystem_support": [
     {
       "operatingsystem": "CentOS",
@@ -57,13 +53,17 @@
       ]
     }
   ],
+  "pdk-version": "1.18.1",
+  "project_page": "https://gitlab.in2p3.fr/cc-in2p3-puppet-service/module-geoip",
   "requirements": [
     {
       "name": "puppet",
       "version_requirement": ">= 4.7.0 < 8.0.0"
     }
   ],
-  "pdk-version": "1.18.1",
+  "source": "https://gitlab.in2p3.fr/cc-in2p3-puppet-service/module-geoip",
+  "summary": "Manages Maxmind GeoIP database",
+  "template-ref": "heads/master-0-gd610ead",
   "template-url": "https://github.com/puppetlabs/pdk-templates",
-  "template-ref": "heads/master-0-gd610ead"
+  "version": "0.5.0"
 }
