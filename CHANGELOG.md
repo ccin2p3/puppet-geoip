@@ -1,3 +1,7 @@
+# 2024-07-18 v0.6.0
+
+* add support for RHEL 9
+
 # 2020-08-06 v0.5.0
 
 * add support for RHEL 8
